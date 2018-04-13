@@ -1,12 +1,12 @@
 {
   "name": "vue-sanitize",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Whitelist-based HTML sanitizer for Vue.js apps.",
   "homepage": "https://github.com/daichirata/vue-sanitize",
   "main": "dist/vue-sanitize.js",
-  "jsnext:main": "src/index.js",
+  "jsnext:main": "index.js",
   "scripts": {
-    "build": "webpack"
+    "build": "rollup -c --name vue-sanitize --input index.js"
   },
   "keywords": [
     "vue-sanitize",
@@ -18,10 +18,6 @@
     "type": "git",
     "url": "https://github.com/daichirata/vue-sanitize.git"
   },
-  "files": [
-    "dist",
-    "src"
-  ],
   "author": "Daichi HIRATA <daichirata@gmail.com>",
   "license": "MIT",
   "dependencies": {
@@ -29,9 +25,12 @@
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
+    "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-env": "^1.6.1",
-    "clean-webpack-plugin": "^0.1.17",
-    "webpack": "^3.8.1"
+    "prettier": "^1.12.0",
+    "rollup": "^0.57.1",
+    "rollup-plugin-babel": "^3.0.3",
+    "rollup-plugin-commonjs": "^9.1.0",
+    "rollup-plugin-node-resolve": "^3.3.0"
   }
 }

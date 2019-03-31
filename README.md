@@ -47,7 +47,7 @@ You can pass default options too:
 
 ``` js
 defaultOptions = {
-    allowedTags: ['a' 'b'],
+    allowedTags: ['a', 'b'],
     allowedAttributes: {
       'a': [ 'href' ]
     }

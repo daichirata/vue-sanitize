@@ -21,7 +21,7 @@
   "author": "Daichi HIRATA <daichirata@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "sanitize-html": "^1.27.4"
+    "sanitize-html": "^2.1.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

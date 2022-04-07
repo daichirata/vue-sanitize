@@ -1,6 +1,6 @@
 {
   "name": "vue-sanitize",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Whitelist-based HTML sanitizer for Vue.js apps.",
   "homepage": "https://github.com/daichirata/vue-sanitize",
   "main": "dist/vue-sanitize.js",
@@ -21,7 +21,7 @@
   "author": "Daichi HIRATA <daichirata@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "sanitize-html": "^2.3.3"
+    "sanitize-html": "^2.7.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

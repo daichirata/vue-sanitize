@@ -555,9 +555,9 @@ babylon@^6.18.0:
   integrity sha512-q/UEjfGJ2Cm3oKV71DJz9d25TPnq5rhBVL2Q4fA5wcC3jcrdn7+SssEybFIxwAvvP+YCsCYNKughoF33GxgycQ==
 
 balanced-match@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
-  integrity sha1-ibTRmasr7kneFk6gK4nORi1xt2c=
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.2.tgz#e83e3a7e3f300b34cb9d87f615fa0cbf357690ee"
+  integrity sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==
 
 brace-expansion@^1.1.7:
   version "1.1.11"
@@ -599,7 +599,7 @@ chalk@^1.1.3:
 concat-map@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
-  integrity sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=
+  integrity sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==
 
 convert-source-map@^1.5.1:
   version "1.7.0"
@@ -844,9 +844,9 @@ magic-string@^0.25.2:
     sourcemap-codec "^1.4.4"
 
 minimatch@^3.0.2, minimatch@^3.0.4:
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-3.0.4.tgz#5166e286457f03306064be5497e8dbb0c3d32083"
-  integrity sha512-yJHVQEhyqPLUTgt9B83PXu6W3rx4MvvHvSUvToogpwoGDOUQ+yDrR0HRot+yOCdCO7u4hX3pWft6kWBBcqh0UA==
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-3.1.2.tgz#19cd194bfd3e428f049a70817c038d89ab4be35b"
+  integrity sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==
   dependencies:
     brace-expansion "^1.1.7"
 
@@ -1056,10 +1056,10 @@ safe-buffer@~5.1.1:
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.2.tgz#991ec69d296e0313747d59bdfd2b745c35f8828d"
   integrity sha512-Gd2UZBJDkXlY7GbJxfsE8/nvKkUEU1G38c1siN6QP6a9PT9MmHB8GnpscSmMJSoF8LOIrt8ud/wPtojys4G6+g==
 
-sanitize-html@^2.7.0:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/sanitize-html/-/sanitize-html-2.7.0.tgz#e106205b468aca932e2f9baf241f24660d34e279"
-  integrity sha512-jfQelabOn5voO7FAfnQF7v+jsA6z9zC/O4ec0z3E35XPEtHYJT/OdUziVWlKW4irCr2kXaQAyXTXDHWAibg1tA==
+sanitize-html@~2.7.0:
+  version "2.7.3"
+  resolved "https://registry.yarnpkg.com/sanitize-html/-/sanitize-html-2.7.3.tgz#166c868444ee4f9fd7352ac8c63fa86c343fc2bd"
+  integrity sha512-jMaHG29ak4miiJ8wgqA1849iInqORgNv7SLfSw9LtfOhEUQ1C0YHKH73R+hgyufBW9ZFeJrb057k9hjlfBCVlw==
   dependencies:
     deepmerge "^4.2.2"
     escape-string-regexp "^4.0.0"

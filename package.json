@@ -37,7 +37,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/daichirata/vue-sanitize.git"
+    "url": "git+https://github.com/daichirata/vue-sanitize.git"
   },
   "author": "Daichi HIRATA <daichirata@gmail.com>",
   "license": "MIT",

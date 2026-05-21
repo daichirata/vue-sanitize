@@ -1,130 +1,141 @@
 # vue-sanitize
 
-Whitelist-based HTML sanitizer (sanitize-html) for Vue.js apps.
+HTML sanitizer plugin for [Vue 3](https://vuejs.org/), powered by [sanitize-html](https://github.com/apostrophecms/sanitize-html).
 
 <p align="center">
   <a href="LICENSE">
     <img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square" alt="Software License" />
   </a>
   <a href="https://npmjs.org/package/vue-sanitize">
-    <img src="https://img.shields.io/npm/v/vue-sanitize.svg?style=flat-square" alt="Packagist" />
+    <img src="https://img.shields.io/npm/v/vue-sanitize.svg?style=flat-square" alt="npm" />
   </a>
-  <a href="https://github.com/daichirata/vue-sanitize/releases">
-    <img src="https://img.shields.io/github/release/daichirata/vue-sanitize.svg?style=flat-square" alt="Latest Version" />
+  <a href="https://github.com/daichirata/vue-sanitize/actions/workflows/ci.yml">
+    <img src="https://img.shields.io/github/actions/workflow/status/daichirata/vue-sanitize/ci.yml?branch=master&style=flat-square" alt="CI" />
   </a>
-
   <a href="https://github.com/daichirata/vue-sanitize/issues">
     <img src="https://img.shields.io/github/issues/daichirata/vue-sanitize.svg?style=flat-square" alt="Issues" />
   </a>
 </p>
 
-## Note
-
-We should always sanitize user input values on the server. Do sanitize with Vue only for necessary cases (e.g markdown preview).
+> **Note**
+> Always sanitize user input on the server. Use this plugin only when client-side sanitization is genuinely needed (e.g. live markdown previews).
 
 ## Install
 
-```
-npm install --save vue-sanitize
-```
-
-or
-
-```
+```bash
+npm install vue-sanitize
+# or
 yarn add vue-sanitize
+# or
+pnpm add vue-sanitize
 ```
 
 ## Usage
 
-Register the plugin
+### Register the plugin
 
-``` js
+```ts
+import { createApp } from "vue";
 import VueSanitize from "vue-sanitize";
-Vue.use(VueSanitize);
+import App from "./App.vue";
+
+createApp(App).use(VueSanitize).mount("#app");
 ```
 
-You can pass default options too:
+You can pass default sanitize-html options:
 
-``` js
-defaultOptions = {
-    allowedTags: ['a', 'b'],
-    allowedAttributes: {
-      'a': [ 'href' ]
-    }
+```ts
+import VueSanitize from "vue-sanitize";
+
+const defaultOptions = {
+  allowedTags: ["a", "b"],
+  allowedAttributes: {
+    a: ["href"],
+  },
 };
-Vue.use(VueSanitize, defaultOptions);
+
+createApp(App).use(VueSanitize, defaultOptions).mount("#app");
 ```
 
-Use it in your components:
+### Options API (`this.$sanitize`)
 
-``` js
+```vue
 <template>
-  <div contenteditable="true" @paste="sanitize"></div>
+  <div contenteditable="true" @paste="onPaste" />
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from "vue";
+
+export default defineComponent({
   methods: {
-    sanitize(event) {
+    onPaste(event: ClipboardEvent) {
       event.preventDefault();
-      const html = this.$sanitize(event.clipboardData.getData('text/html'));
-      //or
-      //const html = this.$sanitize(
-      //  event.clipboardData.getData('text/html'),
-      //  {
-      //    allowedTags: ['b', 'br']
-      //  }
-      //);
-      document.execCommand('insertHTML', false, (html));
-    }
+      const html = this.$sanitize(event.clipboardData?.getData("text/html") ?? "");
+      document.execCommand("insertHTML", false, html);
+    },
   },
+});
+</script>
+```
+
+### Composition API (`useSanitize`)
+
+```vue
+<script setup lang="ts">
+import { useSanitize } from "vue-sanitize";
+
+const sanitize = useSanitize();
+
+function onPaste(event: ClipboardEvent) {
+  event.preventDefault();
+  const html = sanitize(event.clipboardData?.getData("text/html") ?? "", {
+    allowedTags: ["b", "br"],
+  });
+  document.execCommand("insertHTML", false, html);
 }
 </script>
+
+<template>
+  <div contenteditable="true" @paste="onPaste" />
+</template>
 ```
 
 ## API
 
-### `Vue.use(VueSanitize[, defaultOptions])`
+### `app.use(VueSanitize, defaultOptions?)`
 
-#### options
+Registers the plugin. `defaultOptions` are forwarded to `sanitize-html` and used whenever a call site does not pass its own options. See the [sanitize-html docs](https://github.com/apostrophecms/sanitize-html#default-options) for the full option reference.
 
-* Type: `Object`
+### `this.$sanitize(dirty, options?)` / `useSanitize()(dirty, options?)`
 
-This plugin is dependent on [sanitize-html](https://github.com/punkave/sanitize-html). For details, see here https://github.com/punkave/sanitize-html#readme.
+| arg       | type     | required | description                                                              |
+| --------- | -------- | -------- | ------------------------------------------------------------------------ |
+| `dirty`   | `string` | yes      | The untrusted HTML to sanitize.                                          |
+| `options` | `object` | no       | Per-call sanitize-html options. Falls back to the plugin defaults.       |
 
-### `this.$sanitize(diarty[, options])`
+Returns the sanitized HTML string.
 
-#### diarty
+### `defaults`
 
-* Type: `String`
-* Required: `true`
+Re-exports `sanitizeHtml.defaults` for inspection or extension.
 
-#### options
-
-* Type: `Object`
-
-If you don't pass an options, the default options will be used.
-
-#### `VueSanitize.defaults`
-
-Return `sanitizeHtml.defaults`.
-
-## Change log
-
-Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
+```ts
+import { defaults } from "vue-sanitize";
+console.log(defaults.allowedTags);
+```
 
 ## Security
 
-If you discover any security related issues, please email daichirata@gmail.com instead of using the issue tracker.
+If you discover a security issue, please email daichirata@gmail.com instead of opening a public issue.
 
 ## Contributing
 
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
+1. Fork the repository
+2. Create a feature branch
+3. `npm install && npm run typecheck && npm test`
+4. Commit and open a pull request
 
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+The MIT License (MIT). See [LICENSE](LICENSE) for details.

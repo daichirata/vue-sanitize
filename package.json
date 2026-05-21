@@ -1,18 +1,39 @@
 {
   "name": "vue-sanitize",
-  "version": "0.2.3",
-  "description": "Whitelist-based HTML sanitizer for Vue.js apps.",
+  "version": "0.3.0",
+  "description": "HTML sanitizer plugin for Vue 3, powered by sanitize-html.",
   "homepage": "https://github.com/daichirata/vue-sanitize",
-  "main": "dist/vue-sanitize.js",
-  "jsnext:main": "index.js",
+  "type": "module",
+  "main": "./dist/vue-sanitize.cjs",
+  "module": "./dist/vue-sanitize.js",
+  "types": "./dist/index.d.ts",
+  "unpkg": "./dist/vue-sanitize.umd.js",
+  "jsdelivr": "./dist/vue-sanitize.umd.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/vue-sanitize.js",
+      "require": "./dist/vue-sanitize.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "rollup -c --name vue-sanitize --input index.js"
+    "build": "vite build",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run typecheck && npm run test && npm run build"
   },
   "keywords": [
-    "vue-sanitize",
     "vue",
+    "vue3",
     "vue-plugin",
-    "sanitize"
+    "sanitize",
+    "sanitize-html",
+    "xss"
   ],
   "repository": {
     "type": "git",
@@ -20,17 +41,23 @@
   },
   "author": "Daichi HIRATA <daichirata@gmail.com>",
   "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0"
+  },
   "dependencies": {
-    "sanitize-html": "~2.7.0"
+    "sanitize-html": "^2.17.4"
   },
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-plugin-external-helpers": "^6.22.0",
-    "babel-preset-env": "^1.6.1",
-    "prettier": "^1.12.0",
-    "rollup": "^0.57.1",
-    "rollup-plugin-babel": "^3.0.3",
-    "rollup-plugin-commonjs": "^9.1.0",
-    "rollup-plugin-node-resolve": "^3.3.0"
+    "@types/sanitize-html": "^2.16.1",
+    "@vue/test-utils": "^2.4.10",
+    "happy-dom": "^20.9.0",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.13",
+    "vite-plugin-dts": "^5.0.1",
+    "vitest": "^4.1.7",
+    "vue": "^3.5.34"
   }
 }

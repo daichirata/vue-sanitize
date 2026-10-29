@@ -1,6 +1,6 @@
 {
   "name": "vue-sanitize",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "HTML sanitizer plugin for Vue 3, powered by sanitize-html.",
   "homepage": "https://github.com/daichirata/vue-sanitize",
   "type": "module",

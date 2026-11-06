@@ -30,6 +30,8 @@ export default defineConfig({
     dts({
       include: ["src"],
       entryRoot: "src",
+      // index.d.ts for "import", index.d.cts for "require"
+      outDirs: ["dist", { dir: "dist", moduleFormat: "cjs" }],
     }),
   ],
   test: {

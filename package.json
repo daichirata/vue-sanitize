@@ -11,21 +11,28 @@
   "jsdelivr": "./dist/vue-sanitize.umd.js",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/vue-sanitize.js",
-      "require": "./dist/vue-sanitize.cjs"
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/vue-sanitize.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/vue-sanitize.cjs"
+      }
     },
     "./package.json": "./package.json"
   },
   "files": [
     "dist"
   ],
+  "sideEffects": false,
   "scripts": {
     "build": "vite build",
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
-    "prepublishOnly": "npm run typecheck && npm run test && npm run build"
+    "prepublishOnly": "npm run typecheck && npm run test && npm run build && npm run lint",
+    "lint": "publint --strict && attw --pack ."
   },
   "keywords": [
     "vue",
@@ -51,10 +58,12 @@
     "sanitize-html": "^2.18.1"
   },
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.5",
     "@types/sanitize-html": "^2.16.2",
     "@typescript/typescript6": "^6.0.2",
     "@vue/test-utils": "^2.5.1",
     "happy-dom": "^21.0.4",
+    "publint": "^0.3.25",
     "typescript": "^7.0.2",
     "unplugin-dts": "^1.1.2",
     "vite": "^8.3.6",

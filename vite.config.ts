@@ -1,14 +1,11 @@
 import { resolve } from "node:path";
-import { fileURLToPath } from "node:url";
 import { defineConfig } from "vitest/config";
-import dts from "vite-plugin-dts";
-
-const __dirname = fileURLToPath(new URL(".", import.meta.url));
+import dts from "unplugin-dts/vite";
 
 export default defineConfig({
   build: {
     lib: {
-      entry: resolve(__dirname, "src/index.ts"),
+      entry: resolve(import.meta.dirname, "src/index.ts"),
       name: "VueSanitize",
       formats: ["es", "cjs", "umd"],
       fileName: (format) => {
@@ -18,7 +15,7 @@ export default defineConfig({
       },
     },
     sourcemap: true,
-    rollupOptions: {
+    rolldownOptions: {
       external: ["vue", "sanitize-html"],
       output: {
         exports: "named",
@@ -33,6 +30,8 @@ export default defineConfig({
     dts({
       include: ["src"],
       entryRoot: "src",
+      // index.d.ts for "import", index.d.cts for "require"
+      outDirs: ["dist", { dir: "dist", moduleFormat: "cjs" }],
     }),
   ],
   test: {
